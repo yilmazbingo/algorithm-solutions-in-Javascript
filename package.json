@@ -1,0 +1,21 @@
+{
+  "name": "yihua",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push": "git add . && git commit -m \" Updates\" && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yilmazbingo/algorithm-solutions-in-Javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yilmazbingo/algorithm-solutions-in-Javascript/issues"
+  },
+  "homepage": "https://github.com/yilmazbingo/algorithm-solutions-in-Javascript#readme"
+}

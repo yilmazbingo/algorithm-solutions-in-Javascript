@@ -1,0 +1,3 @@
+// resembles to complete binary tree. complete binary trees are ones where every single level is full, except for the very last level. if there are nodes in the last level, it must be as pushed to the left possible.
+// Max Heap : it has values in it in such a way that at every single, all of the children of that node are smaller than it. the only thing that we know for certain about a max heap is that the root node has the greatest value. There is no guarantee that the two immediate children of your root node are going to be the second and third greatest value.
+// MIN HEAP ; the root node is the smallest value inside of this heap.

@@ -1,23 +1,27 @@
-// it makes space complexity from O(N)=>O(1)
+// tail recursion makes space complexity from O(N)=>O(1).
 
 function Factorial(x) {
+  //Base case x<=1
   if (x <= 1) {
-    //Base case
     return 1;
   } else {
+    // x is waiting for the return value of Factorial(x-1)
     return x * Factorial(x - 1);
   }
 }
-Factorial(4);
-4 * Factorial(3);
-4 * (3 * Factorial(2));
+
+Factorial(4); // waiting in the memory for Factorial(3)
+4 * Factorial(3); //  waiting in the memory for Factorial(2)
+4 * (3 * Factorial(2)); //  waiting in the memory for Factorial(1)
 4 * (3 * (2 * Factorial(1)));
 4 * (3 * (2 * 1));
-//  since 12 make 4 calculations, space is O(n)
+//  We are making 4 Factorial() calls, space is O(n)
 
+//--------------------------    TAIL RECURSION ----------------------------
+// Tail call optimization means that it is possible to call a function from another function without growing the call stack.
 function tailFactorial(x, totalSoFar = 1) {
+  //Base Case: x===0
   if (x === 0) {
-    //Base CAse
     return totalSoFar;
   } else {
     return tailFactorial(x - 1, totalSoFar * x);
@@ -33,4 +37,8 @@ tailFactorial(1, 24);
 tailFactorial(0, 24);
 24;
 // here it is not waiting so no function is written in the memeory.
-// we should write tail recursion in recursive solutions. but certain languages do not actually support the tail recursion in their engine that compiles the language down. since ecma6, there has been tail recursion that was in the specification. BUt none of the engines that compile js have implemented tail recursion into it. you wont achieve O() in js, because the compiler itself does not know how to implement this tail recursion.
+// Good engine will know to optimize that and remove the original call from the call stack.
+
+// we should write tail recursion in recursive solutions. but certain languages do not actually support the tail recursion in their engine that compiles the language down. since ecma6, there has been tail recursion that was in the specification. BUt none of the engines that compile js have implemented tail recursion into it. you wont achieve O(1) in js, because the compiler itself does not know how to implement this tail recursion.
+
+// Update: As of January 1, 2020 Safari is the only browser that supports tail call optimization.
