@@ -1,4 +1,5 @@
 // tail recursion makes space complexity from O(N)=>O(1).
+// divide-and-conquer method is when a problem is solved by solving all of its smaller components.
 
 function Factorial(x) {
   //Base case x<=1
@@ -18,9 +19,11 @@ Factorial(4); // waiting in the memory for Factorial(3)
 //  We are making 4 Factorial() calls, space is O(n)
 
 //--------------------------    TAIL RECURSION ----------------------------
+
+// Tail Recursive Function is a recursive function in which recursive call is the last executed thing in the function.
 // Tail call optimization means that it is possible to call a function from another function without growing the call stack.
 function tailFactorial(x, totalSoFar = 1) {
-  //Base Case: x===0
+  //Base Case: x===0. In recursion there must be base case. Otherwise they will never stop
   if (x === 0) {
     return totalSoFar;
   } else {

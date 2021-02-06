@@ -7,12 +7,13 @@
 // Some algorithms choose the first item as pivot, some choose the last item when it starts
 
 // "i","j" starts from the fromt the first elememnt. "i" keeps track of where the final place of pivot. "j" is going to scan the array, compare the element at j, with the pivot to figure out if it greater or less than pivot. if the element at j is smaller than pivot, we are going to swap j with "i" and move the "i" and "j" forward
-// the hint is, ever element on the left of PIVOT is less, and on the right is greater than pivot.
+// the hint is, every element on the left of PIVOT is less, and on the right is greater than pivot.
 // we are sorting one element at a time.
-// merge and quicksort perfect examples of divide and conquer algirithms
-// 1- if we call function itself multipe times
-// 2- breaks a problem into multipe smaller but same sub-problems
-// 3 combines the solutions of subproblems into the solution for the original problem.
+/* merge and quicksort perfect examples of divide and conquer algirithms
+   1- if we call function itself multipe times
+   2- breaks a problem into multipe smaller but same sub-problems
+   3 combines the solutions of subproblems into the solution for the original problem. */
+
 const quickSort = function (array, left, right) {
   // if left=right, it means we have only one item, it is already sorted
   if (left < right) {
@@ -61,7 +62,8 @@ const getKthLargest = function (array, k) {
 };
 A = [2, 32, 12, 3, 78, 99, 898, 8, 1];
 quickSort(A, 0, A.length - 1);
-
+b = getKthLargest(A, 4);
+console.log("4 th largest eleement", b);
 console.log(A);
 
 // How many times do we do the partition call.
