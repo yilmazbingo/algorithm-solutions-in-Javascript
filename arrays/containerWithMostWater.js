@@ -18,8 +18,8 @@ const getMaxWater = (heights) => {
 };
 // space complexity we are not storing any scaling thing in our memory. O(1)
 
-const heightsArray = [4, 8, 1, 2, 39];
-console.log(getMaxWater([4]));
+const heightsArray =  ;
+console.log(getMaxWater(heightsArray));
 
 // we have to implement shifting technique.
 const optimal = (heights) => {
@@ -43,5 +43,5 @@ const optimal = (heights) => {
   }
   return maxArea;
 };
-const height = [4, 3, 1, 2, 11, 12];
-console.log("optimal", optimal(height));
+// const height = [4, 3, 1, 2, 11, 12];
+console.log("optimal", optimal(heightsArray));

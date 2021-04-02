@@ -4,6 +4,7 @@ const getMaxWater = (heights) => {
   if (!Array.isArray(heights)) {
     throw new Error("Please enter an array of number ");
   }
+  //  we will keep track of how much water we found so far
   let totalWater = 0;
 
   for (let p = 0; p < heights.length; p++) {

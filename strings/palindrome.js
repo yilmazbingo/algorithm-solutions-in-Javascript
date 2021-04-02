@@ -7,8 +7,9 @@
 const valid = (S) => {
   // we are mutating S, not creating a new data structure
   // [] in regex designates the actual group of chars.
-  // ^ means Not One of the chars in the list,
+  // ^ means Not. We are catching non-alphanumerical chars
   // g, find all matches rather than stopping after the first match
+  // we are replacing non-alphanumerical chars with ""
   S = S.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
   left = 0;
   right = S.length - 1;
@@ -23,8 +24,9 @@ const valid = (S) => {
   return true;
 };
 
-a = valid("abaa");
-console.log(a);
+a = valid("A man, a plan, a canal:Panama");
+console.log("a", a);
+
 // ------------------ TWO POINTERS FROM CENTER -------------------------
 const isValid = (S) => {
   S = S.replace(/[^A-Za-z0-9]/g, "").toLowerCase();

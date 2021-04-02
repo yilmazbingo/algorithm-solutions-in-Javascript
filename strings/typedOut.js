@@ -50,7 +50,8 @@ const compare = (S, T) => {
         let backCount = 2;
         while (backCount > 0) {
           p1--;
-          if (s[p1] === "#") {
+          backCount--;
+          if (S[p1] === "#") {
             backCount += 2;
           }
         }
@@ -74,4 +75,7 @@ const compare = (S, T) => {
       }
     }
   }
+  return true;
 };
+
+console.log(compare("a#b#c", "c"));
