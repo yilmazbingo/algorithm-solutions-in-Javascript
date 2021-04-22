@@ -1,79 +1,98 @@
-/* resembles to complete binary tree. complete binary trees are ones where every single level is full, except for the very last level. if there are nodes in the last level, it must be as pushed to the left possible.
-- Max Heap : it has values in it in such a way that at every single, all of the children of that node are smaller than it. the only thing that we know for certain about a max heap is that the root node has the greatest value. There is no guarantee that the two immediate children of your root node are going to be the second and third greatest value.
- - MIN HEAP ; the root node is the smallest value inside of this heap.
- - heaps can be stored in array with breadth search, level by level. using an array we need to figure out some mathematical formula that helps us define the relationship between nodes that we had before.
-   PARENT    : floor((indexOfNode-1)/2) 
-   LEFTCHILD : (index * 2)+1
-   RIGHTCHILD: (index * 2)+2 */
-// the reason why we implemented the max heap in the first place, because we want to say,"I am going to give you values and whenever I want to retrieve value from you you have to gie me the greatest value amongst the values that i have given you". in remove() we are going to remove the greatest value. We are going to take the last element in the binary tree and sift it down.
-// In many languages, priority queues ad heaps are part of the default language, in javascript we dont.
-class PriorityQueues {
+class PriorityQueue {
   constructor(comparator = (a, b) => a > b) {
     this._heap = [];
     this._comparator = comparator;
   }
+
   size() {
     return this._heap.length;
   }
-  isEmpty() {
-    // return this._heap.length === 0 if we dont use array, and then we need to change here. Instead we use the size() as our single source of truth
-    return this.size() === 0;
-  }
+
   peek() {
     return this._heap[0];
   }
-  _parent(index) {
-    return Math.floor((index - 1) / 2);
+
+  isEmpty() {
+    return this._heap.length === 0;
   }
-  _leftChild(index) {
-    return index * 2 + 1;
+
+  _parent(idx) {
+    return Math.floor((idx - 1) / 2);
   }
-  _rightChild(index) {
-    return index * 2 + 2;
+
+  _leftChild(idx) {
+    return idx * 2 + 1;
   }
-  _swap(a, b) {
-    const temp = _this._heap[a];
-    _this._heap[a] = _this._heap[b];
-    _this._heap[b] = temp;
+
+  _rightChild(idx) {
+    return idx * 2 + 2;
   }
+
+  _swap(i, j) {
+    [this._heap[i], this._heap[j]] = [this._heap[j], this._heap[i]];
+  }
+
   _compare(i, j) {
     return this._comparator(this._heap[i], this._heap[j]);
   }
-  // O(Log(N)) which is height of the tree
-  insert(el) {
-    if (this._size === 0) {
-      return (this._heap[0] = el);
+
+  push(value) {
+    this._heap.push(value);
+    this._siftUp();
+
+    return this.size();
+  }
+
+  _siftUp() {
+    let nodeIdx = this.size() - 1;
+
+    while (0 < nodeIdx && this._compare(nodeIdx, this._parent(nodeIdx))) {
+      this._swap(nodeIdx, this._parent(nodeIdx));
+      nodeIdx = this._parent(nodeIdx);
     }
-    this._heap[this.size() + 1] = el;
-    for (let i = this.size() - 1; i > 0; i--) {
-      let parent = this._parent(i);
-      if (this._heap[parent] < el) {
-        this._swap(this._heap, el);
-      }
+  }
+
+  pop() {
+    if (this.size() > 1) {
+      this._swap(0, this.size() - 1);
     }
+
+    const poppedValue = this._heap.pop();
+    this._siftDown();
+    return poppedValue;
   }
-  _siftUp(){
-      // we are adding the value at the end of the array
-      let nodeIndex=this.size()-1
-      // if index===0 we cannot swap any more. 
-      while(nodeIndex>0 && this._compare(nodeIndex,this._parent(nodeIndex))){
-          this._swap(nodeIndex,this._parent(nodeIndex))
-          nodeIndex=this._parent(nodeIndex)
-      }
-  }
-  _siftDown(){
-      this._heap[0]=this._heap[this.size()-1]
-      let nodeIndex=0
-      while(this._compare())
-  }
-  push(value){
-      this._heap.push(value)
-      this._siftUp()
-      return this.size()
-  }
-  remove(){
-      this._heap.shift()
-      this._siftDown()
-      return this.size()
+
+  _siftDown() {
+    let nodeIdx = 0;
+
+    while (
+      (this._leftChild(nodeIdx) < this.size() &&
+        this._compare(this._leftChild(nodeIdx), nodeIdx)) ||
+      (this._rightChild(nodeIdx) < this.size() &&
+        this._compare(this._rightChild(nodeIdx), nodeIdx))
+    ) {
+      const greaterChildIdx =
+        this._rightChild(nodeIdx) < this.size() &&
+        this._compare(this._rightChild(nodeIdx), this._leftChild(nodeIdx))
+          ? this._rightChild(nodeIdx)
+          : this._leftChild(nodeIdx);
+
+      this._swap(greaterChildIdx, nodeIdx);
+      nodeIdx = greaterChildIdx;
+    }
   }
 }
+
+const pq = new PriorityQueue();
+pq.push(15);
+pq.push(12);
+pq.push(50);
+pq.push(7);
+pq.push(40);
+pq.push(22);
+
+while (!pq.isEmpty()) {
+  console.log(pq.pop());
+}
+
+module.exports = PriorityQueue;

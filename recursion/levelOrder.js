@@ -1,5 +1,7 @@
 const BinarySearchTree = require("../search/binarySearchTree");
 
+// BFS is iterative, dfs is recursive
+// final answer [[root],[level1 nodes],[level2 nodes]]
 class LevelOrder extends BinarySearchTree {
   constructor(root) {
     super(root);
@@ -9,11 +11,13 @@ class LevelOrder extends BinarySearchTree {
       return [];
     }
     const result = [];
+    // queue will identify the current level.
     const queue = [root];
     while (queue.length) {
       const currentLevelValues = [];
       let length = queue.length,
         count = 0;
+      // once we are out of this loop we are in a new level
       while (count < length) {
         const currentNode = queue.shift();
         currentLevelValues.push(currentNode.value);

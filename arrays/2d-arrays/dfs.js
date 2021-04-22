@@ -12,7 +12,7 @@ const m = [
   [16, 17, 18, 19, 20],
 ];
 const traversalDFS = function (matrix) {
-  // how are we going to keep track of all of the elements inside 2D array, we already seen before. To do so, once we touched an element, we convert it to true. Initially everything wull have F value.
+  // how are we going to keep track of all of the elements inside 2D array, we already seen before. To do so, once we touched an element, we convert it to true. Initially everything wull have False value.
   // we fill it with something so we could call map().
   const seen = new Array(matrix.length)
     .fill(0) //[0,0]
@@ -22,6 +22,7 @@ const traversalDFS = function (matrix) {
 
   return exploredValues;
 };
+// row and col are for starting points
 const dfs = function (matrix, row, col, seen, exploredValues) {
   if (
     row < 0 ||
@@ -29,8 +30,10 @@ const dfs = function (matrix, row, col, seen, exploredValues) {
     row >= matrix.length ||
     col >= matrix[0].length ||
     seen[row][col]
+    // if seen[row][col] is true means we already explored that
   )
     return;
+  // this is the starting point
   exploredValues.push(matrix[row][col]);
   seen[row][col] = true;
   // next we have to figure out how to write recursive function calls in 4 directions we can possibly traverse from [0,0]
@@ -49,3 +52,10 @@ const dfs = function (matrix, row, col, seen, exploredValues) {
 };
 // becasue we are tracking values we have seen before inside of matrix, time O(N) and space complexity O[N]
 console.log(traversalDFS(m));
+
+const direction = [
+  [-1, 0],
+  [0, 1],
+  [1, 0],
+  [0, -1],
+];

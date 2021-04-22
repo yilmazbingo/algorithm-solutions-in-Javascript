@@ -26,7 +26,7 @@ const longest = (S) => {
         seenChars[currentChar] = true;
         longest = Math.max(longest, currentLength);
       } else {
-        break; // this will exist us out of the second for loop
+        break;
       }
     }
   }
@@ -64,5 +64,5 @@ const sliding = (S) => {
   return longest;
 };
 
-b = longest("adjaheuwewwi");
-console.log("b", b);
+// b = longest("adjaheuwewwi");
+// console.log("b", b);

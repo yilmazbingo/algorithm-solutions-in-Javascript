@@ -10,7 +10,7 @@ const maxDepth = function (node, currentDepth) {
   }
   currentDepth++;
   return Math.max(
-    maxDepth(maxDepth(node.left, currentDepth)),
+    maxDepth(node.left, currentDepth),
     maxDepth(node.right, currentDepth)
   );
 };

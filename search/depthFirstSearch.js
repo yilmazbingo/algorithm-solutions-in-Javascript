@@ -1,7 +1,6 @@
 // the search follows one branch of the tree down as many levels as possible until the target notice found or the end is reached.
 // it has lower memory requirement because it is not necessary to store all the child ppinters at each level.
-// as the name suggests DEPTH first 
-. it can get slow if the tree or graph is deep.
+// as the name suggests DEPTH first. it can get slow if the tree or graph is deep.
 // If the tree is very wide, use DFS.
 // If the solutions are frequent but located deep in the tree use DFS.
 // determining whether a path exists between two nodes. This is waht DFS is built for.
